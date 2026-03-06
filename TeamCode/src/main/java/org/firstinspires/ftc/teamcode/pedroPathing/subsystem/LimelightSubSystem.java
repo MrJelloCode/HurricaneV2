@@ -20,8 +20,8 @@ public class LimelightSubSystem {
        CAMERA / GEOMETRY
        ===================== */
 
-    public double limelightHeightInches = 14.0;
-    public double limelightPitchDegrees = 15.0; // camera tilt up
+    public double limelightHeightInches = 13.718;
+    public double limelightPitchDegrees = 11.33187; // camera tilt up
 
     public double targetHeightInches = 30.0;
 
@@ -29,7 +29,7 @@ public class LimelightSubSystem {
        SHOOTER GEOMETRY
        ===================== */
 
-    public double shooterHeightInches = 14.0;   // separate for tuning
+    public double shooterHeightInches = 12.38335;   // separate for tuning
     public double hoodAngleDegrees = 55.0;      // ball exit angle
 
     /* =====================
