@@ -29,14 +29,14 @@ public class Constants {
             .xVelocity(0)
             .yVelocity(0)
 
-            .rightFrontMotorName("FR")
-            .rightRearMotorName("FL")
-            .leftRearMotorName("BL")
-            .leftFrontMotorName("BR")
-            .leftFrontMotorDirection(DcMotorSimple.Direction.FORWARD)
-            .leftRearMotorDirection(DcMotorSimple.Direction.FORWARD)
-            .rightFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
-            .rightRearMotorDirection(DcMotorSimple.Direction.REVERSE);
+            .rightFrontMotorName("frontRight")
+            .rightRearMotorName("backRight")
+            .leftRearMotorName("backLeft")
+            .leftFrontMotorName("frontLeft")
+            .leftFrontMotorDirection(DcMotorSimple.Direction.REVERSE)
+            .leftRearMotorDirection(DcMotorSimple.Direction.REVERSE)
+            .rightFrontMotorDirection(DcMotorSimple.Direction.FORWARD)
+            .rightRearMotorDirection(DcMotorSimple.Direction.FORWARD);
 
     public static ThreeWheelConstants localizerConstants = new ThreeWheelConstants()
             .forwardTicksToInches(0)
@@ -45,12 +45,12 @@ public class Constants {
             .leftPodY(6)
             .rightPodY(-6)
             .strafePodX(-5.25)
-            .leftEncoder_HardwareMapName("FL")
-            .rightEncoder_HardwareMapName("BR")
-            .strafeEncoder_HardwareMapName("FR")
-            .leftEncoderDirection(Encoder.REVERSE)
-            .rightEncoderDirection(Encoder.FORWARD)
-            .strafeEncoderDirection(Encoder.FORWARD);
+            .leftEncoder_HardwareMapName("frontLeft")
+            .rightEncoder_HardwareMapName("backRight")
+            .strafeEncoder_HardwareMapName("frontRight")
+            .leftEncoderDirection(Encoder.FORWARD)
+            .rightEncoderDirection(Encoder.REVERSE)
+            .strafeEncoderDirection(Encoder.REVERSE);
 
     public static PathConstraints pathConstraints = new PathConstraints(0.99, 100, 1, 1);
 
