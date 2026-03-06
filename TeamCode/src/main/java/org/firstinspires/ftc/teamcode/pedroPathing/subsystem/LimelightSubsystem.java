@@ -4,13 +4,11 @@ import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import java.net.BindException;
-
 /**
  * Streamlined Limelight-based shooter helper
  * Focused on geometry + hood angle + flywheel size
  */
-public class LimelightSubSystem {
+public class LimelightSubsystem {
 
     private Limelight3A limelight;
     private double tx, ty, ta;
@@ -47,7 +45,7 @@ public class LimelightSubSystem {
 
     private static final double GRAVITY = 386.09; // in/s^2
 
-    public LimelightSubSystem(HardwareMap hardwareMap) {
+    public LimelightSubsystem(HardwareMap hardwareMap) {
         limelight = hardwareMap.get(Limelight3A.class, "limelight");
         limelight.pipelineSwitch(0);
         limelight.setPollRateHz(100);
