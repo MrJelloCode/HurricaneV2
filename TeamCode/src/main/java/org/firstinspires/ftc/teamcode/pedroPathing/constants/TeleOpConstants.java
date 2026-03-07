@@ -33,6 +33,30 @@ public class TeleOpConstants {
         public static double POWER = 0.8;
     }
 
+    /* ========== TURRET ========== */
+    public static class Turret {
+
+        public static final String TURRET_MOTOR_NAME = "turret";
+
+        public static final double TICKS_PER_MOTOR_REV = 435;
+
+        public static final double GEAR_RATIO = 3.0;
+
+        public static final double MAX_ANGLE = Math.toRadians(180);
+        public static final double MIN_ANGLE = Math.toRadians(-180);
+
+
+        public static final double TURRET_OFFSET = 0;
+
+
+        public static final double KP = 2.0;
+        public static final double KI = 0.0;
+        public static final double KD = 0.08;
+
+        public static final double MAX_POWER = 0.7;
+
+        public static final double MANUAL_POWER = 0.5;
+    }
     /* ========== LIMELIGHT ========== */
     public static class Limelight{
         public static String LIMELIGHT_NAME = "limelight";
@@ -49,8 +73,6 @@ public class TeleOpConstants {
         public static double RPM_OFFSET = 0.0;
 
         public static final double GRAVITY = 386.09;
-
-
 
     }
 
