@@ -88,4 +88,11 @@ public class FlyWheelSubsystem {
         rightFlywheel.setPower(power);
         leftFlywheel.setPower(power);
     }
+
+    public boolean atTargetVelocity(){
+        return Math.abs(rightFlywheel.getVelocity() - targetVel) < TeleOpConstants.Flywheel.VELOCITY_TOLERANCE;
+    }
+    public double currentVelocity(){
+        return rightFlywheel.getVelocity();
+    }
 }

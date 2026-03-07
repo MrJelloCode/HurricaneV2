@@ -25,6 +25,7 @@ public class TeleOpConstants {
 
         public static double FAR_VEL = 2000;
         public static double CLOSE_VEL = 1500;
+        public static double VELOCITY_TOLERANCE = 10;
     }
 
     /* ========== INTAKE ========== */
