@@ -13,7 +13,7 @@ public class TurretSubsystem {
     /* ================= ENCODER CONSTANTS ================= */
 
     private static final double TICKS_PER_REV = 435;   // motor encoder CPR
-    private static final double GEAR_RATIO = 3;      // planetary ratio
+    private static final double GEAR_RATIO = 3;      // MIGHT HAVE TO CHANGE THIS
 
     /* ================= SAFETY LIMITS ================= */
 
