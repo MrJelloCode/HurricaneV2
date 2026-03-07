@@ -7,15 +7,17 @@ import org.firstinspires.ftc.robotcore.external.navigation.*;
 
 public class DrivetrainSubsystem {
     private DcMotorEx frontLeft, frontRight, backLeft, backRight;
+    private Gamepad gamepad;
     private IMU imu;
 
 
-    public DrivetrainSubsystem(HardwareMap hw) {
+    public DrivetrainSubsystem(HardwareMap hw, Gamepad gamepad) {
         frontLeft  = hw.get(DcMotorEx.class, "frontLeft");
         frontRight = hw.get(DcMotorEx.class, "frontRight");
         backLeft   = hw.get(DcMotorEx.class, "backLeft");
         backRight  = hw.get(DcMotorEx.class, "backRight");
 
+        this.gamepad = gamepad;
 
         frontLeft.setDirection(DcMotorSimple.Direction.FORWARD);
         backLeft.setDirection(DcMotorSimple.Direction.FORWARD);
@@ -37,7 +39,7 @@ public class DrivetrainSubsystem {
     }
 
 
-    public void fieldCentricDrive(Gamepad gamepad, double slowMode, double slowTurn) {
+    public void fieldCentricDrive(double slowMode, double slowTurn) {
         double y = -gamepad.left_stick_y;
         double x = gamepad.left_stick_x * 1.1;
         double rx = gamepad.right_stick_x * slowTurn;
@@ -60,7 +62,7 @@ public class DrivetrainSubsystem {
         backRight.setPower((rotY + rotX - rx) / denominator * slowMode);
     }
 
-    public void fieldCentricDrive(Gamepad gamepad) {
+    public void fieldCentricDrive() {
         double y = -gamepad.left_stick_y;
         double x = gamepad.left_stick_x * 1.1;
         double rx = gamepad.right_stick_x ;
@@ -83,8 +85,7 @@ public class DrivetrainSubsystem {
         backRight.setPower((rotY + rotX - rx) / denominator );
     }
 
-
-    public void robotCentricDrive(Gamepad gamepad, double slowMode, double slowTurn){
+    public void robotCentricDrive(){
 
         double y = -gamepad.left_stick_y; // Remember, Y stick value is reversed
         double x = gamepad.left_stick_x * 1.1; // Counteract imperfect strafing
@@ -105,6 +106,5 @@ public class DrivetrainSubsystem {
         backRight.setPower(backRightPower);
 
     }
-
 
 }
