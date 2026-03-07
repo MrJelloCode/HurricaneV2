@@ -27,12 +27,13 @@ public class TeleOpConstants {
         public static double CLOSE_VEL = 1500;
     }
 
-
+    /* ========== INTAKE ========== */
     public static class Intake{
         public static String INTAKE_MOTOR_NAME = "intake";
         public static double POWER = 0.8;
     }
 
+    /* ========== LIMELIGHT ========== */
     public static class Limelight{
         public static String LIMELIGHT_NAME = "limelight";
         public static int LIMELIGHT_POLL_RATE_HZ = 100;
