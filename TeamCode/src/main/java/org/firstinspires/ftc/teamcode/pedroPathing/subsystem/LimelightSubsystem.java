@@ -2,7 +2,10 @@ package org.firstinspires.ftc.teamcode.pedroPathing.subsystem;
 
 import com.qualcomm.hardware.limelightvision.LLResult;
 import com.qualcomm.hardware.limelightvision.Limelight3A;
+import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+
+import org.firstinspires.ftc.teamcode.pedroPathing.constants.TeleOpConstants;
 
 /**
  * Streamlined Limelight-based shooter helper
@@ -14,41 +17,11 @@ public class LimelightSubsystem {
     private double tx, ty, ta;
     private boolean hasTarget, updating = false;
 
-    /* =====================
-       CAMERA / GEOMETRY
-       ===================== */
-
-    public double limelightHeightInches = 13.718;
-    public double limelightPitchDegrees = 11.33187; // camera tilt up
-
-    public double targetHeightInches = 30.0;
-
-    /* =====================
-       SHOOTER GEOMETRY
-       ===================== */
-
-    public double shooterHeightInches = 12.38335;   // separate for tuning
-    public double hoodAngleDegrees = 55.0;      // ball exit angle
-
-    /* =====================
-       FLYWHEEL
-       ===================== */
-
-    public double flywheelDiameterInches = 3.0;
-
-    /* =====================
-       TUNING OFFSETS
-       ===================== */
-
-    public double distanceOffsetInches = 0.0;
-    public double rpmOffset = 0.0;
-
-    private static final double GRAVITY = 386.09; // in/s^2
 
     public LimelightSubsystem(HardwareMap hardwareMap) {
-        limelight = hardwareMap.get(Limelight3A.class, "limelight");
-        limelight.pipelineSwitch(0);
-        limelight.setPollRateHz(100);
+        limelight = hardwareMap.get(Limelight3A.class, TeleOpConstants.Limelight.LIMELIGHT_NAME);
+        limelight.pipelineSwitch(TeleOpConstants.Limelight.DEFAULT_PIPELINE);
+        limelight.setPollRateHz(TeleOpConstants.Limelight.LIMELIGHT_POLL_RATE_HZ);
         limelight.start();
     }
 
@@ -82,13 +55,13 @@ public class LimelightSubsystem {
        ===================== */
 
     public double getDistanceInches() {
-        double angleRad = Math.toRadians(limelightPitchDegrees + ty);
+        double angleRad = Math.toRadians(TeleOpConstants.Limelight.LIMELIGHT_PITCH_DEGREES + ty);
         if (Math.abs(Math.tan(angleRad)) < 0.01) return 0;
 
-        double distance = (targetHeightInches - limelightHeightInches)
+        double distance = (TeleOpConstants.Limelight.TARGET_HEIGHT_INCHES - TeleOpConstants.Limelight.LIMELIGHT_HEIGHT_INCHES)
                 / Math.tan(angleRad);
 
-        return distance + distanceOffsetInches;
+        return distance + TeleOpConstants.Limelight.DISTANCE_OFFSET_INCHES;
     }
 
     /* =====================
@@ -99,8 +72,8 @@ public class LimelightSubsystem {
         double d = getDistanceInches();
         if (d <= 0) return 0;
 
-        double theta = Math.toRadians(hoodAngleDegrees);
-        double deltaH = targetHeightInches - shooterHeightInches;
+        double theta = Math.toRadians(TeleOpConstants.Flywheel.HOOD_ANGLE_DEGREES);
+        double deltaH = TeleOpConstants.Limelight.TARGET_HEIGHT_INCHES - TeleOpConstants.Flywheel.FLYWHEEL_HEIGHT_INCHES;
 
         double cos = Math.cos(theta);
         double tan = Math.tan(theta);
@@ -108,7 +81,7 @@ public class LimelightSubsystem {
         double denominator = 2 * cos * cos * (d * tan - deltaH);
         if (denominator <= 0) return 0;
 
-        return Math.sqrt((GRAVITY * d * d) / denominator);
+        return Math.sqrt((TeleOpConstants.Limelight.GRAVITY * d * d) / denominator);
     }
 
     /* =====================
@@ -119,9 +92,9 @@ public class LimelightSubsystem {
         double v = calculateExitVelocityIPS();
         if (v <= 0) return 0;
 
-        double wheelCircumference = Math.PI * flywheelDiameterInches;
+        double wheelCircumference = Math.PI * TeleOpConstants.Flywheel.FLYWHEEL_DIAMETER_INCHES;
         double baseRPM = (v / wheelCircumference) * 60.0;
 
-        return baseRPM + rpmOffset;
+        return baseRPM + TeleOpConstants.Limelight.RPM_OFFSET;
     }
 }

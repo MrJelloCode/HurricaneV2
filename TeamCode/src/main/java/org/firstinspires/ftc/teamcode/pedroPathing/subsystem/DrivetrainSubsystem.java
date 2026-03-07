@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.pedroPathing.subsystem;
 import com.qualcomm.hardware.rev.RevHubOrientationOnRobot;
 import com.qualcomm.robotcore.hardware.*;
 import org.firstinspires.ftc.robotcore.external.navigation.*;
+import org.firstinspires.ftc.teamcode.pedroPathing.constants.TeleOpConstants;
 
 
 public class DrivetrainSubsystem {
@@ -12,10 +13,10 @@ public class DrivetrainSubsystem {
 
 
     public DrivetrainSubsystem(HardwareMap hw, Gamepad gamepad) {
-        frontLeft  = hw.get(DcMotorEx.class, "frontLeft");
-        frontRight = hw.get(DcMotorEx.class, "frontRight");
-        backLeft   = hw.get(DcMotorEx.class, "backLeft");
-        backRight  = hw.get(DcMotorEx.class, "backRight");
+        frontLeft  = hw.get(DcMotorEx.class, TeleOpConstants.Drivetrain.FRONT_LEFT_MOTOR_NAME);
+        frontRight = hw.get(DcMotorEx.class, TeleOpConstants.Drivetrain.FRONT_RIGHT_MOTOR_NAME);
+        backLeft   = hw.get(DcMotorEx.class, TeleOpConstants.Drivetrain.BACK_LEFT_MOTOR_NAME);
+        backRight  = hw.get(DcMotorEx.class, TeleOpConstants.Drivetrain.BACK_RIGHT_MOTOR_NAME);
 
         this.gamepad = gamepad;
 

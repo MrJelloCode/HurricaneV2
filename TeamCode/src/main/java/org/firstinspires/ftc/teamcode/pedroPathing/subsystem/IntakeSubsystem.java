@@ -2,6 +2,8 @@ package org.firstinspires.ftc.teamcode.pedroPathing.subsystem;
 
 import com.qualcomm.robotcore.hardware.*;
 
+import org.firstinspires.ftc.teamcode.pedroPathing.constants.TeleOpConstants;
+
 
 public class IntakeSubsystem {
     private DcMotorEx intake;
@@ -9,16 +11,16 @@ public class IntakeSubsystem {
 
 
     public IntakeSubsystem(HardwareMap hw, Gamepad gamepad) {
-        intake = hw.get(DcMotorEx.class, "intake");
+        intake = hw.get(DcMotorEx.class, TeleOpConstants.Intake.INTAKE_MOTOR_NAME);
         this.gamepad = gamepad;
     }
 
 
     public void teleUpdate() {
         if (gamepad.right_trigger > 0.05) {
-            intake.setPower(0.8);          // intake in, proportional
+            intake.setPower(TeleOpConstants.Intake.POWER);          // intake in, proportional
         } else if (gamepad.left_trigger > 0.05) {
-            intake.setPower(-0.8);         // reverse out, proportional
+            intake.setPower(-TeleOpConstants.Intake.POWER);         // reverse out, proportional
         } else {
             intake.setPower(0);           // off
         }

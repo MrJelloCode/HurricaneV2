@@ -7,16 +7,14 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.pedroPathing.constants.TeleOpConstants;
+
 @TeleOp
 public class FlyWheelSubsystem {
 
-    public static double kP = 0,kV = 0,kS = 0;
-    public static double maxTargetTPS = 1500; // target speed in ticks/sec
-    private static final double OUTPUT_MAX = 1.0;
-
     boolean closeOn = false, farOn = false;
     boolean lastA = false, lastB = false, enabled = false;
-    double farVel = 2000, closeVel = 1500, targetVel;
+    double targetVel;
 
     private Gamepad gamepad2;
 
@@ -25,8 +23,8 @@ public class FlyWheelSubsystem {
     public static double velocity;
 
     public FlyWheelSubsystem(HardwareMap hw, Gamepad gamepad2) {
-        rightFlywheel = hw.get(DcMotorEx.class, "flywheel1");
-        leftFlywheel = hw.get(DcMotorEx.class, "flywheel2");
+        rightFlywheel = hw.get(DcMotorEx.class, TeleOpConstants.Flywheel.RIGHT_FLYWHEEL_MOTOR_NAME);
+        leftFlywheel = hw.get(DcMotorEx.class, TeleOpConstants.Flywheel.LEFT_FLYWHEEL_MOTOR_NAME);
 
         leftFlywheel.setDirection(DcMotorEx.Direction.FORWARD);
         leftFlywheel.setDirection(DcMotorEx.Direction.REVERSE);
@@ -52,10 +50,10 @@ public class FlyWheelSubsystem {
         // Decide target based on toggles
         if (farOn) {
             enabled = true;
-            targetVel = farVel;
+            targetVel = TeleOpConstants.Flywheel.FAR_VEL;
         } else if (closeOn) {
             enabled = true;
-            targetVel = closeVel;
+            targetVel = TeleOpConstants.Flywheel.CLOSE_VEL;
         } else {
             enabled = false;
         }
@@ -78,11 +76,11 @@ public class FlyWheelSubsystem {
         velocity = rightFlywheel.getVelocity();
 
         double error = targetVel - velocity;
-        double feedback = error * kP;
+        double feedback = error * TeleOpConstants.Flywheel.KP;
 
         double feedforward = 0;
         if (targetVel > 0) {
-            feedforward = kV * targetVel + kS;
+            feedforward = TeleOpConstants.Flywheel.KV * targetVel + TeleOpConstants.Flywheel.KS;
         }
 
         double power = feedback + feedforward;
