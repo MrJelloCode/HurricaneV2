@@ -3,6 +3,7 @@ package org.firstinspires.ftc.teamcode.pedroPathing.teleOpModes;
 import static org.firstinspires.ftc.teamcode.pedroPathing.Tuning.follower;
 
 import com.pedropathing.geometry.Pose;
+import com.qualcomm.hardware.rev.RevBlinkinLedDriver;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
@@ -20,6 +21,7 @@ public class BlueTeleOp extends OpMode {
     private FlyWheelSubsystem flyWheelSubsystem;
     private IntakeSubsystem intakeSubsystem;
     private TurretSubsystem turretSubsystem;
+    private RevBlinkinLedDriver blinkin;
 
 
     @Override
@@ -29,6 +31,7 @@ public class BlueTeleOp extends OpMode {
         flyWheelSubsystem = new FlyWheelSubsystem(hardwareMap,gamepad2);
         intakeSubsystem  = new IntakeSubsystem(hardwareMap, gamepad2);
         turretSubsystem = new TurretSubsystem(hardwareMap);
+        blinkin = hardwareMap.get(RevBlinkinLedDriver.class, "blinkin");
     }
 
     @Override
@@ -39,6 +42,14 @@ public class BlueTeleOp extends OpMode {
         intakeSubsystem.teleUpdate();
         flyWheelSubsystem.teleVelocity();
         telemetry.update();
+
+
+
+        if(flyWheelSubsystem.atTargetVelocity()){
+            blinkin.setPattern(RevBlinkinLedDriver.BlinkinPattern.GREEN);
+        }else{
+            blinkin.setPattern(RevBlinkinLedDriver.BlinkinPattern.VIOLET);
+        }
 
         Pose pose = follower.getPose();
 
@@ -53,7 +64,6 @@ public class BlueTeleOp extends OpMode {
             turretSubsystem.disableManual();
         }
 
-        /* TELEMETRY */
         turretSubsystem.telemetry(telemetry);
 
         telemetry.update();
