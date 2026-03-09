@@ -9,7 +9,6 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.pedroPathing.constants.TeleOpConstants;
 
-@TeleOp
 public class FlyWheelSubsystem {
 
     boolean closeOn = false, farOn = false;
