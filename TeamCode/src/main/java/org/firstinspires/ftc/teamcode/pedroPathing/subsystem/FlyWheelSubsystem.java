@@ -6,6 +6,7 @@ import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.Gamepad;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.Range;
 
 import org.firstinspires.ftc.teamcode.pedroPathing.constants.TeleOpConstants;
 
@@ -25,7 +26,7 @@ public class FlyWheelSubsystem {
         rightFlywheel = hw.get(DcMotorEx.class, TeleOpConstants.Flywheel.RIGHT_FLYWHEEL_MOTOR_NAME);
         leftFlywheel = hw.get(DcMotorEx.class, TeleOpConstants.Flywheel.LEFT_FLYWHEEL_MOTOR_NAME);
 
-        leftFlywheel.setDirection(DcMotorEx.Direction.FORWARD);
+        rightFlywheel.setDirection(DcMotorEx.Direction.FORWARD);
         leftFlywheel.setDirection(DcMotorEx.Direction.REVERSE);
         this.gamepad2 = gamepad2;
 
@@ -66,23 +67,24 @@ public class FlyWheelSubsystem {
 
     public void update(){
 
+
         if(!enabled || targetVel <= 0){
-            targetVel = 0;
             rightFlywheel.setPower(0);
             leftFlywheel.setPower(0);
+            return;
         }
-        // Single encoder
+
         velocity = rightFlywheel.getVelocity();
 
         double error = targetVel - velocity;
         double feedback = error * TeleOpConstants.Flywheel.KP;
 
-        double feedforward = 0;
-        if (targetVel > 0) {
-            feedforward = TeleOpConstants.Flywheel.KV * targetVel + TeleOpConstants.Flywheel.KS;
-        }
+        double feedforward = TeleOpConstants.Flywheel.KV * targetVel
+                + TeleOpConstants.Flywheel.KS;
 
         double power = feedback + feedforward;
+
+        power = Range.clip(power, -1, 1);
 
         rightFlywheel.setPower(power);
         leftFlywheel.setPower(power);
