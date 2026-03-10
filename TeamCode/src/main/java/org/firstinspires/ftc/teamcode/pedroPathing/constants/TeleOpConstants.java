@@ -12,16 +12,16 @@ public class TeleOpConstants {
 
     /* ========== FLYWHEEL ========== */
     public static class Flywheel {
-        public static String RIGHT_FLYWHEEL_MOTOR_NAME = "flywheel1";
-        public static String LEFT_FLYWHEEL_MOTOR_NAME = "flywheel2";
+        public static String RIGHT_FLYWHEEL_MOTOR_NAME = "rightmotor";
+        public static String LEFT_FLYWHEEL_MOTOR_NAME = "leftmotor";
 
         public static double FLYWHEEL_DIAMETER_INCHES = 3.0;
         public static double FLYWHEEL_HEIGHT_INCHES = 12.38335;
         public static double HOOD_ANGLE_DEGREES = 55;
 
-        public static double KP = 0;
-        public static double KV = 0;
-        public static double KS = 0;
+        public static double KP = 0.01;
+        public static double KV = 0.000364;
+        public static double KS = 0.0640;
 
         public static double FAR_VEL = 2000;
         public static double CLOSE_VEL = 1500;
