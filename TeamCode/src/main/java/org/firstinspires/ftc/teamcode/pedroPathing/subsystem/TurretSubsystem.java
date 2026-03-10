@@ -17,7 +17,7 @@ public class TurretSubsystem {
 
     /* ================= SAFETY LIMITS ================= */
 
-    private static final double MAX_POWER = 1;
+    private static final double MAX_POWER = 0.8;
     private static final double MIN_ANGLE = -180.0;
     private static final double MAX_ANGLE = 180.0;
 

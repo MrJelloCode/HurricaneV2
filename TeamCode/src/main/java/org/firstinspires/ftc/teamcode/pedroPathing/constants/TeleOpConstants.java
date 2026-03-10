@@ -30,7 +30,7 @@ public class TeleOpConstants {
     /* ========== INTAKE ========== */
     public static class Intake{
         public static String INTAKE_MOTOR_NAME = "intake";
-        public static double POWER = 0.8;
+        public static double POWER = 1;
     }
 
     /* ========== LIMELIGHT ========== */
