@@ -5,6 +5,7 @@ import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 
 import org.firstinspires.ftc.teamcode.pedroPathing.subsystem.DrivetrainSubsystem;
 import org.firstinspires.ftc.teamcode.pedroPathing.subsystem.FlyWheelSubsystem;
+import org.firstinspires.ftc.teamcode.pedroPathing.subsystem.GateSubsystem;
 import org.firstinspires.ftc.teamcode.pedroPathing.subsystem.IntakeSubsystem;
 import org.firstinspires.ftc.teamcode.pedroPathing.subsystem.LimelightSubsystem;
 
@@ -31,7 +32,7 @@ public class BlueTeleOp extends OpMode {
     public void loop() {
 
         limelightSubsystem.update();
-        drivetrainSubsystem.robotCentricDrive();
+        drivetrainSubsystem.fieldCentricDrive();
         intakeSubsystem.teleUpdate();
         flyWheelSubsystem.teleVelocity();
         telemetry.update();
