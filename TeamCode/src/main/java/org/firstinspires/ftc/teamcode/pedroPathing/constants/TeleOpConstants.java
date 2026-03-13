@@ -54,5 +54,12 @@ public class TeleOpConstants {
 
     }
 
+    /* ========== GATE ========== */
+
+    public static class Gate{
+        public static double gateClosedPos = 0.15;
+        public static double gateOpenPos   = 0.03;
+    }
+
 
 }

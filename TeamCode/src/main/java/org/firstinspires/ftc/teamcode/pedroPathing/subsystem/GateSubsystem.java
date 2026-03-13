@@ -9,8 +9,6 @@ public class GateSubsystem {
     private Servo gate;
     private Gamepad gamepad;
 
-    public static double posA = 0.28;
-    public static double posB = 0.50;
 
     boolean servoState = false;
     boolean lastY = false;
@@ -32,9 +30,9 @@ public class GateSubsystem {
 
         // Apply correct position
         if (servoState) {
-            gate.setPosition(posB);
+            gate.setPosition(TeleOpConstants.Gate.gateOpenPos);
         } else {
-            gate.setPosition(posA);
+            gate.setPosition(TeleOpConstants.Gate.gateClosedPos);
         }
     }
 
